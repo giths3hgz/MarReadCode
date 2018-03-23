@@ -18,6 +18,8 @@ import java.util.ArrayList;
 import masterung.androidthai.in.th.ungreadcode.NotificationActivity;
 import masterung.androidthai.in.th.ungreadcode.R;
 import masterung.androidthai.in.th.ungreadcode.utility.ChangeStringToArray;
+import masterung.androidthai.in.th.ungreadcode.utility.EditStatusWhereidUserAndStatus;
+import masterung.androidthai.in.th.ungreadcode.utility.MyConstant;
 
 /**
  * Created by Mavis on 23/03/2018.
@@ -47,7 +49,7 @@ public class ShowNotiFragment extends Fragment{
         messageStrings = getArguments().getStringArray("Message");
 //        Get Value Form SharePreferance
         getValueFromSharePreferance();
-
+        changeStatus();
 
 //        Creat Toolsbar
         creatToolsbar();
@@ -56,6 +58,19 @@ public class ShowNotiFragment extends Fragment{
 
 
     }//Main Class
+
+    private void changeStatus() {
+        try {
+            MyConstant myConstant = new MyConstant();
+            EditStatusWhereidUserAndStatus editStatusWhereidUserAndStatus = new EditStatusWhereidUserAndStatus(getActivity());
+            editStatusWhereidUserAndStatus.execute(loginStrings[0], myConstant.getUrlEditStatusWhereIDUser());
+
+            Log.d("23MarchV1", "Result From Change Status ==>" + editStatusWhereidUserAndStatus.get());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     private void getValueFromSharePreferance() {
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("LoginFile", Context.MODE_PRIVATE);

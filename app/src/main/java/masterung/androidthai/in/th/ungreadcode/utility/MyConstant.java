@@ -11,12 +11,14 @@ public class MyConstant {
     private String urlAddChildString = "http://androidthai.in.th/mar/AddChild.php";
     private String urlGetAllUserString = "http://androidthai.in.th/mar/getAllUser.php";
     private String urlPostUserString = "http://androidthai.in.th/mar/postUser.php";
+    private String urlEditStatusWhereIDUser = "http://androidthai.in.th/mar/EditStatusByUser.php";  //แก้ไข Status จาก 1 เป็น 0
 
     //    About Array
     private String[] columnMessageStrings = new String[]{"id", "idUser", "Code",
             "NameChild", "ImageChild", "Status", "DateMessage", "Message"};
     private String[] loginStrings = new String[]{"id", "Name", "User", "Password"};
 
+    public String getUrlEditStatusWhereIDUser() { return urlEditStatusWhereIDUser; }
 
     public String[] getColumnMessageStrings() {
         return columnMessageStrings;
