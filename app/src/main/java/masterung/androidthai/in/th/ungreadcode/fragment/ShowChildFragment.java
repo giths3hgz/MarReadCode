@@ -73,7 +73,7 @@ public class ShowChildFragment extends Fragment {
     }   // Main Method
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    private void myLoop() {
+    private void myLoop() {   //Loop check change 1 to 0
 
 //        To Do
         try {
@@ -161,12 +161,12 @@ public class ShowChildFragment extends Fragment {
 
     }
 
-    private void createToolbar() {
+    private void createToolbar() {  //check listview childern กี่คน
         Toolbar toolbar = getView().findViewById(R.id.toolbarShowChild);
         ((ServiceActivity) getActivity()).setSupportActionBar(toolbar);
         ((ServiceActivity) getActivity()).getSupportActionBar()
                 .setTitle(getString(R.string.title_show_child));
-        ((ServiceActivity) getActivity()).getSupportActionBar().setSubtitle(loginStrings[1] + " login");
+        ((ServiceActivity) getActivity()).getSupportActionBar().setSubtitle(loginStrings[1] + " login"); //show nameuser + login
         setHasOptionsMenu(true);
     }
 
@@ -255,7 +255,7 @@ public class ShowChildFragment extends Fragment {
 
     }
 
-    private void createListView() {
+    private void createListView() { //Show List Childen by Parent database messagetable 'idUser' 1 2 3 ....
 
         ListView listView = getView().findViewById(R.id.listviewChild);
 
