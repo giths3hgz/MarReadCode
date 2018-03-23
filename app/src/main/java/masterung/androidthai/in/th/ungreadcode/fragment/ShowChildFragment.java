@@ -29,6 +29,8 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.zxing.Result;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -44,6 +46,7 @@ import masterung.androidthai.in.th.ungreadcode.utility.AddChild;
 import masterung.androidthai.in.th.ungreadcode.utility.ChangeStringToArray;
 import masterung.androidthai.in.th.ungreadcode.utility.GetChildWhereIdUser;
 import masterung.androidthai.in.th.ungreadcode.utility.MyConstant;
+import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
 /**
  * Created by masterung on 22/3/2018 AD.
@@ -53,6 +56,8 @@ public class ShowChildFragment extends Fragment {
 
     private String[] loginStrings;
     private boolean statusABoolean = true;
+    private ZXingScannerView zXingScannerView;
+    private String resultFromReadQRString;
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
@@ -175,9 +180,53 @@ public class ShowChildFragment extends Fragment {
 
         if (item.getItemId() == R.id.itemAddChild) {
             addNameChild();
+            return true;
+        }
+
+        if (item.getItemId() == R.id.itemReadQRcode) {
+            readQRandBar();
+            return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void readQRandBar() {
+
+        zXingScannerView = new ZXingScannerView(getActivity());  // Sync Library
+        getActivity().setContentView(zXingScannerView);
+        zXingScannerView.setAutoFocus(true);
+        zXingScannerView.startCamera();
+        zXingScannerView.setResultHandler(new ZXingScannerView.ResultHandler() {
+            @Override
+            public void handleResult(Result result) {
+                zXingScannerView.stopCamera();
+                resultFromReadQRString = result.getText().toString(); // เอาค่าที่อ่านได้มาเป็น String
+                Log.d("23MarchV2", "QR or Bar Code ==> " + resultFromReadQRString);
+
+                String newDateString = findDate();
+
+//                Restart Activity
+                if (resultFromReadQRString.length() != 0) {
+                    restartActivity();
+                }
+
+
+            }// HandlerResult
+        });
+
+    }
+
+    private String findDate() {
+        Calendar calendar = Calendar.getInstance();  //Search Real Time ค้นห้าเวลาปัจจุบัน
+
+        return null;
+    }
+
+    private void restartActivity() {
+        Intent intent = getActivity().getIntent();
+        getActivity().finish();
+        startActivity(intent);
     }
 
     private void addNameChild() {

@@ -3,6 +3,7 @@
     package="masterung.androidthai.in.th.ungreadcode">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />  // Set User Camera For Mobile QR Code
 
     <application
         android:allowBackup="true"
